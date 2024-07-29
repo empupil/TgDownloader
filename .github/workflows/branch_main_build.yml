@@ -35,4 +35,4 @@ jobs:
         run: msbuild TgDownloader.sln -t:rebuild -verbosity:quiet -property:Configuration=Release -property:Platform="Any CPU"
 
       - name: List Files
-        run: ls
+        run: Get-ChildItem -Recurse

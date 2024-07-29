@@ -33,14 +33,18 @@ jobs:
 
       - name: Build app for Release Any CPU
         run: msbuild TgDownloader.sln -t:rebuild -verbosity:quiet -property:Configuration=Release -property:Platform="Any CPU"
-
-      - name: Upload to release
-        uses: actions/upload-artifact@v4
+        
+      - name: Package artifacts
+        run: |
+          # 打包构建的文件
+          tar czf my-app.tar.gz ./Clients
+          
+      - name: Upload Artifact
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: my-release
-          path: ./Clients
-      - name: Release
-        uses: googleapis/release-please-action@v4
-        with: 
-          token: ${{ secrets.GITHUB_TOKEN }}
-          release-type: simple
+          upload_url: ${{ steps.release.outputs.upload_url }}
+          asset_path: ./my-app.tar.gz
+          asset_name: my-app.tar.gz
+          asset_content_type: application/gzip

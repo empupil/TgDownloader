@@ -309,7 +309,7 @@ public sealed partial class TgLocaleHelper : ObservableObject, INotifyPropertyCh
 
 	public TgLocaleHelper()
 	{
-		Language = TgEnumLanguage.English;
+		Language = TgEnumLanguage.Chinese;
 	}
 
 	#endregion

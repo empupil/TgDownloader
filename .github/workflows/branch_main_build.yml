@@ -39,8 +39,8 @@ jobs:
         with:
           name: my-release
           path: ./Clients
-      -name: Release
-      uses: googleapis/release-please-action@v4
+      - name: Release
+        uses: googleapis/release-please-action@v4
         with: 
           token: ${{ secrets.GITHUB_TOKEN }}
           release-type: simple
